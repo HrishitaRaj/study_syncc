@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 import { 
   FaSearch, 
   FaPlus, 
@@ -215,259 +216,262 @@ const ResourcesPage = () => {
   ].filter(Boolean).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-blue-50 to-violet-50 py-12 px-4">
-      <motion.div 
-        className="max-w-6xl mx-auto"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50 to-blue-100">
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-blue-50 to-violet-50 py-12 px-4">
         <motion.div 
-          className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8"
-          variants={itemVariants}
+          className="max-w-6xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-              <div>
-                <h1 className="text-2xl font-bold text-white flex items-center gap-3">
-                  <FaBook className="text-2xl" />
-                  Study Resources
-                </h1>
-                <p className="text-blue-100 mt-1">
-                  Browse and download helpful study materials
-                </p>
-              </div>
-              <motion.button
-                className="mt-4 sm:mt-0 px-4 py-2 bg-white text-blue-700 rounded-lg font-medium flex items-center"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => navigate('/resources/upload')}
-              >
-                <FaPlus className="mr-2" /> Upload Resource
-              </motion.button>
-            </div>
-          </div>
-
-          {/* Search and Filter Bar */}
-          <div className="p-6 border-b border-gray-100">
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* Search Box */}
-              <div className="relative flex-grow">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaSearch className="text-gray-400" />
+          {/* Header */}
+          <motion.div 
+            className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8"
+            variants={itemVariants}
+          >
+            <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                <div>
+                  <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <FaBook className="text-2xl" />
+                    Study Resources
+                  </h1>
+                  <p className="text-blue-100 mt-1">
+                    Browse and download helpful study materials
+                  </p>
                 </div>
-                <input
-                  type="text"
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
-                  placeholder="Search resources..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-                            
-              {/* Desktop Filter Options */}
-              <div className="hidden md:flex md:items-center gap-3">
-                <select
-                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
-                  value={selectedCourse}
-                  onChange={(e) => setSelectedCourse(e.target.value)}
-                >
-                  <option value="">All Courses</option>
-                  {courses.map(course => (
-                    <option key={course.id} value={course.id}>
-                      {course.name}
-                    </option>
-                  ))}
-                </select>
-                
-                <select
-                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
-                  value={selectedFileType}
-                  onChange={(e) => setSelectedFileType(e.target.value)}
-                >
-                  <option value="">All File Types</option>
-                  {fileTypes.map(type => (
-                    <option key={type.id} value={type.id}>
-                      {type.name}
-                    </option>
-                  ))}
-                </select>
-                
-                {activeFiltersCount > 0 && (
-                  <motion.button
-                    className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium flex items-center text-sm"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={clearFilters}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                  >
-                    <FaTimes className="mr-1" /> Clear Filters ({activeFiltersCount})
-                  </motion.button>
-                )}
-              </div>
-              
-              {/* Mobile Filter Button */}
-              <div className="md:hidden">
                 <motion.button
-                  className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-medium flex items-center justify-center"
+                  className="mt-4 sm:mt-0 px-4 py-2 bg-white text-blue-700 rounded-lg font-medium flex items-center"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => setFilterMenuOpen(!filterMenuOpen)}
+                  onClick={() => navigate('/resources/upload')}
                 >
-                  <FaFilter className="mr-2" />
-                  {filterMenuOpen ? "Hide Filters" : "Show Filters"}
-                  {activeFiltersCount > 0 && (
-                    <span className="ml-2 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                      {activeFiltersCount}
-                    </span>
-                  )}
+                  <FaPlus className="mr-2" /> Upload Resource
                 </motion.button>
               </div>
             </div>
-            
-            {/* Mobile Filter Options */}
-            {filterMenuOpen && (
-              <motion.div 
-                className="mt-4 space-y-3 md:hidden"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <select
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
-                  value={selectedCourse}
-                  onChange={(e) => setSelectedCourse(e.target.value)}
-                >
-                  <option value="">All Courses</option>
-                  {courses.map(course => (
-                    <option key={course.id} value={course.id}>
-                      {course.name}
-                    </option>
-                  ))}
-                </select>
+
+            {/* Search and Filter Bar */}
+            <div className="p-6 border-b border-gray-100">
+              <div className="flex flex-col md:flex-row gap-4">
+                {/* Search Box */}
+                <div className="relative flex-grow">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FaSearch className="text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                    placeholder="Search resources..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+                              
+                {/* Desktop Filter Options */}
+                <div className="hidden md:flex md:items-center gap-3">
+                  <select
+                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
+                    value={selectedCourse}
+                    onChange={(e) => setSelectedCourse(e.target.value)}
+                  >
+                    <option value="">All Courses</option>
+                    {courses.map(course => (
+                      <option key={course.id} value={course.id}>
+                        {course.name}
+                      </option>
+                    ))}
+                  </select>
+                  
+                  <select
+                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
+                    value={selectedFileType}
+                    onChange={(e) => setSelectedFileType(e.target.value)}
+                  >
+                    <option value="">All File Types</option>
+                    {fileTypes.map(type => (
+                      <option key={type.id} value={type.id}>
+                        {type.name}
+                      </option>
+                    ))}
+                  </select>
+                  
+                  {activeFiltersCount > 0 && (
+                    <motion.button
+                      className="px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium flex items-center text-sm"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={clearFilters}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                    >
+                      <FaTimes className="mr-1" /> Clear Filters ({activeFiltersCount})
+                    </motion.button>
+                  )}
+                </div>
                 
-                <select
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
-                  value={selectedFileType}
-                  onChange={(e) => setSelectedFileType(e.target.value)}
-                >
-                  <option value="">All File Types</option>
-                  {fileTypes.map(type => (
-                    <option key={type.id} value={type.id}>
-                      {type.name}
-                    </option>
-                  ))}
-                </select>
-                
-                {activeFiltersCount > 0 && (
+                {/* Mobile Filter Button */}
+                <div className="md:hidden">
                   <motion.button
-                    className="w-full px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium flex items-center justify-center"
+                    className="w-full px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg font-medium flex items-center justify-center"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={clearFilters}
+                    onClick={() => setFilterMenuOpen(!filterMenuOpen)}
                   >
-                    <FaTimes className="mr-2" /> Clear All Filters
-                  </motion.button>
-                )}
-              </motion.div>
-            )}
-          </div>
-        </motion.div>
-
-        {/* Resources Grid */}
-        {isLoading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-          </div>
-        ) : filteredResources.length > 0 ? (
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={containerVariants}
-          >
-            {filteredResources.map(resource => (
-              <motion.div 
-                key={resource.id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-                variants={itemVariants}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="p-5">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
-                        {resource.title}
-                      </h3>
-                      <p className="text-sm text-blue-600 mb-2">
-                        {resource.courseName}
-                      </p>
-                    </div>
-                    <div className="p-2 bg-blue-50 rounded-lg">
-                      {getFileTypeIcon(resource.fileType)}
-                    </div>
-                  </div>
-                  
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {resource.description}
-                  </p>
-                   
-                  <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                    <div>Uploaded: {formatDate(resource.uploadDate)}</div>
-                    <div>{formatFileSize(resource.fileSize)}</div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    {renderRating(resource.rating)}
-                    <div className="text-xs text-gray-500">{resource.downloadCount} downloads</div>
-                  </div>
-                </div>
-                    
-                <div className="border-t border-gray-100 p-4 bg-gray-50 flex justify-between items-center">
-                  <div className="text-xs text-gray-500">
-                    By {resource.uploadedBy}
-                  </div>
-                  <motion.button
-                    className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm flex items-center"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => handleDownload(resource.id)}
-                  >
-                    <FaDownload className="mr-1" /> Download
+                    <FaFilter className="mr-2" />
+                    {filterMenuOpen ? "Hide Filters" : "Show Filters"}
+                    {activeFiltersCount > 0 && (
+                      <span className="ml-2 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                        {activeFiltersCount}
+                      </span>
+                    )}
                   </motion.button>
                 </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div 
-            className="bg-white rounded-xl shadow-md p-10 text-center"
-            variants={itemVariants}
-          >
-            <div className="text-gray-400 text-5xl mb-4">
-              <FaSearch className="mx-auto" />
+              </div>
+              
+              {/* Mobile Filter Options */}
+              {filterMenuOpen && (
+                <motion.div 
+                  className="mt-4 space-y-3 md:hidden"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
+                    value={selectedCourse}
+                    onChange={(e) => setSelectedCourse(e.target.value)}
+                  >
+                    <option value="">All Courses</option>
+                    {courses.map(course => (
+                      <option key={course.id} value={course.id}>
+                        {course.name}
+                      </option>
+                    ))}
+                  </select>
+                  
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition appearance-none bg-white"
+                    value={selectedFileType}
+                    onChange={(e) => setSelectedFileType(e.target.value)}
+                  >
+                    <option value="">All File Types</option>
+                    {fileTypes.map(type => (
+                      <option key={type.id} value={type.id}>
+                        {type.name}
+                      </option>
+                    ))}
+                  </select>
+                  
+                  {activeFiltersCount > 0 && (
+                    <motion.button
+                      className="w-full px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium flex items-center justify-center"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={clearFilters}
+                    >
+                      <FaTimes className="mr-2" /> Clear All Filters
+                    </motion.button>
+                  )}
+                </motion.div>
+              )}
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">No resources found</h3>
-            <p className="text-gray-600 mb-6">
-              {searchTerm || selectedCourse || selectedFileType ? 
-                "Try adjusting your filters to find what you're looking for." : 
-                "It looks like there are no resources available yet."}
-            </p>
-            {(searchTerm || selectedCourse || selectedFileType) && (
-              <motion.button
-                className="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg font-medium inline-flex items-center"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={clearFilters}
-              >
-                <FaTimes className="mr-2" /> Clear All Filters
-              </motion.button>
-            )}
           </motion.div>
-        )}
-      </motion.div>
-    </div>
+
+          {/* Resources Grid */}
+          {isLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+            </div>
+          ) : filteredResources.length > 0 ? (
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              variants={containerVariants}
+            >
+              {filteredResources.map(resource => (
+                <motion.div 
+                  key={resource.id}
+                  className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                  variants={itemVariants}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                >
+                  <div className="p-5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-2">
+                          {resource.title}
+                        </h3>
+                        <p className="text-sm text-blue-600 mb-2">
+                          {resource.courseName}
+                        </p>
+                      </div>
+                      <div className="p-2 bg-blue-50 rounded-lg">
+                        {getFileTypeIcon(resource.fileType)}
+                      </div>
+                    </div>
+                    
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                      {resource.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                      <div>Uploaded: {formatDate(resource.uploadDate)}</div>
+                      <div>{formatFileSize(resource.fileSize)}</div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      {renderRating(resource.rating)}
+                      <div className="text-xs text-gray-500">{resource.downloadCount} downloads</div>
+                    </div>
+                  </div>
+                      
+                  <div className="border-t border-gray-100 p-4 bg-gray-50 flex justify-between items-center">
+                    <div className="text-xs text-gray-500">
+                      By {resource.uploadedBy}
+                    </div>
+                    <motion.button
+                      className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm flex items-center"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => handleDownload(resource.id)}
+                    >
+                      <FaDownload className="mr-1" /> Download
+                    </motion.button>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div 
+              className="bg-white rounded-xl shadow-md p-10 text-center"
+              variants={itemVariants}
+            >
+              <div className="text-gray-400 text-5xl mb-4">
+                <FaSearch className="mx-auto" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">No resources found</h3>
+              <p className="text-gray-600 mb-6">
+                {searchTerm || selectedCourse || selectedFileType ? 
+                  "Try adjusting your filters to find what you're looking for." : 
+                  "It looks like there are no resources available yet."}
+              </p>
+              {(searchTerm || selectedCourse || selectedFileType) && (
+                <motion.button
+                  className="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg font-medium inline-flex items-center"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={clearFilters}
+                >
+                  <FaTimes className="mr-2" /> Clear All Filters
+                </motion.button>
+              )}
+            </motion.div>
+          )}
+        </motion.div>
+      </div>
+    </div> 
   );
 };
 

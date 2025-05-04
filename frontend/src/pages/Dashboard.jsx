@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate('/dashboard');
     }
   }, [user, navigate]);
 

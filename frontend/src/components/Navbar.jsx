@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaBookOpen, FaSignOutAlt, FaBook } from 'react-icons/fa';
+import { FaBookOpen, FaSignOutAlt, FaBook, FaCheck, FaClock, FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,14 +14,24 @@ const Navbar = () => {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/dashboard" className="flex items-center gap-2 text-blue-600 font-bold text-xl">
-          <FaBookOpen className="text-2xl" />
-          StudySync
-        </Link>
+      <Link
+  to={localStorage.getItem('token') ? "/dashboard" : "/login"}
+  className="flex items-center gap-2 text-blue-600 font-bold text-xl"
+>
+  <FaBookOpen className="text-2xl" />
+  StudySync
+</Link>
 
         <div className="flex items-center gap-4 text-gray-600">
-          <Link to="/todo" className="hover:text-blue-500 transition">To-Do</Link>
-          <Link to="/pomodoro" className="hover:text-blue-500 transition">Pomodoro</Link>
+          <Link to="/todo" className="hover:text-blue-500 transition flex items-center">
+            <FaCheck className="mr-1" /> To-Do
+          </Link>
+          <Link to="/pomodoro" className="hover:text-blue-500 transition flex items-center">
+            <FaClock className="mr-1" /> Pomodoro
+          </Link>
+          <Link to="/studygroups" className="hover:text-blue-500 transition flex items-center">
+            <FaUser className="mr-1" />StudyGroups
+          </Link>
           <Link to="/resources" className="hover:text-blue-500 transition flex items-center">
             <FaBook className="mr-1" /> Resources
           </Link>

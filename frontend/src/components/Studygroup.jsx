@@ -74,8 +74,32 @@ export default function StudyGroups() {
     }
   };
 
+  // Example of proper fetch request in React
+  const createStudyGroup = async (groupData) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/studygroups', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(groupData)
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Success:', data);
+      return data;
+    } catch (error) {
+      console.error('Error creating study group:', error);
+      throw error;
+    }
+  };
+
   // Create new study group
-  const handleCreateGroup = () => {
+  const handleCreateGroup = async () => {
     const newGroupData = {
       id: studyGroups.length + 1,
       ...newGroup,
@@ -83,9 +107,14 @@ export default function StudyGroups() {
       joined: true
     };
     
-    setStudyGroups([...studyGroups, newGroupData]);
-    setNewGroup({ name: '', description: '', meetingTime: '', location: '' });
-    setShowCreateModal(false);
+    try {
+      const createdGroup = await createStudyGroup(newGroupData);
+      setStudyGroups([...studyGroups, createdGroup]);
+      setNewGroup({ name: '', description: '', meetingTime: '', location: '' });
+      setShowCreateModal(false);
+    } catch (error) {
+      console.error('Failed to create group:', error);
+    }
   };
 
   // Show details of selected group

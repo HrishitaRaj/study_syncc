@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
 
+
 dotenv.config();
 app.use(cors());
 app.use(express.json());
@@ -19,12 +20,16 @@ app.get('/', (req, res) => {
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
 
+
 const todoRoutes = require('./routes/todoRoutes');
 const pomodoroRoutes = require('./routes/pomodoroRoutes');
+const studyGroupRoutes = require('./routes/studyGroupRoutes');
+const resourceRoutes = require('./routes/resourceRoutes');
 
 app.use('/api/todo', todoRoutes);
 app.use('/api/pomodoro', pomodoroRoutes);
-
+app.use('/api/studygroups', studyGroupRoutes);
+app.use('/api/resources', resourceRoutes);
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

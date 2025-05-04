@@ -8,13 +8,25 @@ exports.getTasks = (req, res) => {
 };
 
 exports.addTask = (req, res) => {
-  const { user_id, text, priority = 'Medium', dueDate = null, notes = null } = req.body;
+  const {
+    user_id,
+    text,
+    priority = 'Medium',
+    dueDate,
+    notes
+  } = req.body;
+
+  const cleanDueDate = dueDate === '' ? null : dueDate;
+  const cleanNotes = notes === '' ? null : notes;
 
   db.query(
     'INSERT INTO todos (user_id, text, priority, due_date, notes) VALUES (?, ?, ?, ?, ?)',
-    [user_id, text, priority, dueDate, notes],
+    [user_id, text, priority, cleanDueDate, cleanNotes],
     (err, result) => {
-      if (err) return res.status(500).json({ error: 'DB insert failed' });
+      if (err) {
+        console.error('Insert error:', err);
+        return res.status(500).json({ error: 'DB insert failed' });
+      }
 
       const newTaskId = result.insertId;
       db.query('SELECT * FROM todos WHERE id = ?', [newTaskId], (err, taskResults) => {
@@ -25,7 +37,7 @@ exports.addTask = (req, res) => {
       });
     }
   );
-};  
+}; 
 
 exports.updateTask = (req, res) => {
   const { id, completed, text, priority, dueDate, notes } = req.body;

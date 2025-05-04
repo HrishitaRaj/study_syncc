@@ -8,6 +8,7 @@ import ToDo from './components/ToDoList';
 import Pomodoro from './components/PomodoroTimer';
 import StudyGroups from './components/Studygroup';
 import Resources from './pages/Resources';
+import QuizMe from './pages/QuizMe';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/pomodoro" element={<Pomodoro />} />
         <Route path="/studygroups" element={<StudyGroups />} />
         <Route path="/resources" element={<Resources />} />
+        <Route path="/quiz" element={<QuizMe />} />
       </Routes>
     </Router>
   );

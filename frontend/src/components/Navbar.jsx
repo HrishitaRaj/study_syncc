@@ -35,7 +35,6 @@ const Navbar = () => {
           <Link to="/resources" className="hover:text-blue-500 transition flex items-center">
             <FaBook className="mr-1" /> Resources
           </Link>
-          <Link to="/quiz" className="hover:text-blue-500 transition">QuizMe</Link>
           <button
             onClick={handleLogout}
             className="flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"

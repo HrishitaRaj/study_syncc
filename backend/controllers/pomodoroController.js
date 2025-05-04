@@ -1,10 +1,11 @@
 const db = require('../config/db');
 
 exports.logSession = (req, res) => {
-  const { user_id, duration_minutes } = req.body;
+  const { user_id, mode, start_time, end_time, duration_seconds } = req.body;
+
   db.query(
-    'INSERT INTO pomodoro_sessions (user_id, duration_minutes) VALUES (?, ?)',
-    [user_id, duration_minutes],
+    'INSERT INTO pomodoro_sessions (user_id, mode, start_time, end_time, duration_seconds) VALUES (?, ?, ?, ?, ?)',
+    [user_id, mode, start_time, end_time, duration_seconds],
     (err) => {
       if (err) return res.status(500).json({ error: 'Failed to log session' });
       res.json({ message: 'Pomodoro session logged' });

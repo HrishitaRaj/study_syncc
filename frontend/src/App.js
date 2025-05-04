@@ -6,6 +6,10 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ToDo from './components/ToDoList';
 import Pomodoro from './components/PomodoroTimer';
+import ResourcesPage from './components/Resources';
+import ResourceUpload from './components/ResourcesUpload';
+import StudyGroups from './components/Studygroup';
+
 
 function App() {
   return (
@@ -17,6 +21,10 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/todo" element={<ToDo />} />
         <Route path="/pomodoro" element={<Pomodoro />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/resources/upload" element={<ResourceUpload />} />
+        <Route path="/studygroups" element={<StudyGroups />} />
+        
       </Routes>
     </Router>
   );

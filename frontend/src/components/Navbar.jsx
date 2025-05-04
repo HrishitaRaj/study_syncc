@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaBookOpen, FaSignOutAlt } from 'react-icons/fa';
+import { FaBookOpen, FaSignOutAlt, FaBook } from 'react-icons/fa';
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Optional: Clear local storage or session if used
+    // Clear token from localStorage
+    localStorage.removeItem('token');
     navigate('/login');
   };
 
@@ -21,6 +22,9 @@ const Navbar = () => {
         <div className="flex items-center gap-4 text-gray-600">
           <Link to="/todo" className="hover:text-blue-500 transition">To-Do</Link>
           <Link to="/pomodoro" className="hover:text-blue-500 transition">Pomodoro</Link>
+          <Link to="/resources" className="hover:text-blue-500 transition flex items-center">
+            <FaBook className="mr-1" /> Resources
+          </Link>
           <button
             onClick={handleLogout}
             className="flex items-center gap-1 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"

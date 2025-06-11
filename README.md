@@ -5,11 +5,17 @@ By streamlining study schedules and fostering collaborative learning, StudySync 
 
 # Key Features
 **📚 Task Manager:** Create, organize, and track personal study tasks with priorities, due dates, and notes.
+
 **⏳ Pomodoro Session Timer:** Built-in Pomodoro timer to enhance focus and manage study sessions effectively.
+
 **🤝 Collaborative Study Groups:** Form and join study groups based on subjects or interests for seamless peer learning.
+
 **📝 Digital Resource Sharing:** Upload, share, and access study notes, documents, and academic resources within groups.
+
 **⭐ Resource Rating & Review:** Rate and review shared resources to highlight quality content for peers.
+
 **🔔 Real-time Reminders & Notifications:** Stay updated on deadlines, tasks, and study group activities.
+
 **📊 Dashboard Overview:** Visual summary of upcoming tasks, completed sessions, and group activity.
 
 # 📸 Preview
@@ -26,9 +32,13 @@ By streamlining study schedules and fostering collaborative learning, StudySync 
 
 # 🛠️ Tech Stack
 🔹**React.js** — Frontend framework for building a responsive, dynamic user interface.
+
 🔹**Node.js & Express.js** — Backend runtime environment and framework for handling APIs and server-side logic.
+
 🔹**MySQL** — Relational database management system for securely storing and managing all application data.
+
 🔹**Postman** — API testing tool to validate backend endpoints during development.
+
 🔹**CORS & Body-Parser(Express Middleware)** — For handling cross-origin requests and parsing JSON request bodies.
 
 # Conclusion
@@ -43,15 +53,21 @@ It also demonstrates strong application of full-stack development and database m
 ``` git clone https://github.com/HrishitaRaj/study_syncc.git ```
 
 **2.Install Dependencies:**
+
 Backend:
+
 ``` cd backend ```
 ``` npm install ```
+
 Frontend:
+
 ``` cd frontend ```
 ``` npm install ```
 
 **3. Environment Variables:**
+
 Create a ```.env``` file in ```backend/config/```:
+
 ```
 DB_HOST=localhost
 DB_USER=root
